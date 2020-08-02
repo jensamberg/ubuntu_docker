@@ -1,1 +1,1 @@
-# ubuntu_docker
+# Ubuntu 18 Docker image
