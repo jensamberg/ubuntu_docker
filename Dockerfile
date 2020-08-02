@@ -1,7 +1,7 @@
-# This Dockerfile creates an Ubuntu 18.04 image
+# This Dockerfile creates an Ubuntu 20.04 image
 
 # Pull base image.
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 LABEL maintainer="jensamberg@mail.de"
 
