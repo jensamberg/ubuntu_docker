@@ -1,17 +1,38 @@
-# This Dockerfile creates an Ubuntu 20.04 image to generate al
+# This Dockerfile creates an Ubuntu 18.04 image
+
 # Pull base image.
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 LABEL maintainer="jensamberg@mail.de"
 
-ARG DEBIAN_FRONTEND=noninteractive
+# Setup environment
+ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=Europe/Berlin
 
+RUN dpkg --add-architecture i386 &&\
+    apt-get update -y
 # Install.
 RUN \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y build-essential && \
-  apt-get install -y curl git htop man unzip vim wget cmake && \  
+  apt-get install -y build-essential sed mtools && \
+  apt-get install -y curl git htop man unzip vim wget cmake && \
   apt-get install -y mercurial make binutils gcc g++ patch bc file rsync unzip cpio tar && \
-  apt-get install -y gcc-multilib g++-multilib libncurses5-dev python3
+  apt-get install -y gcc-multilib g++-multilib libncurses5-dev python3 \
+  && \
+  apt-get -y autoremove && \
+  apt-get -y clean
+
+
+# Set the locale
+RUN apt-get clean && apt-get update && apt-get install -y locales
+RUN locale-gen en_US.UTF-8
+
+
+RUN useradd -ms /bin/bash br-user && \
+    chown -R br-user:br-user /home/br-user
+
+USER br-user
+WORKDIR /home/br-user
+ENV HOME /home/br-user
+ENV LC_ALL en_US.UTF-8
