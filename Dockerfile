@@ -15,7 +15,7 @@ RUN dpkg --add-architecture i386 &&\
 RUN \
   apt-get update && \
   apt-get -y upgrade && \
-  apt-get install -y build-essential sed mtools && \
+  apt-get install -y build-essential sed mtools python && \
   apt-get install -y curl git htop man unzip vim wget cmake && \
   apt-get install -y mercurial make binutils gcc g++ patch bc file rsync unzip cpio tar && \
   apt-get install -y gcc-multilib g++-multilib libncurses5-dev python3 && \
