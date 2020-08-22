@@ -36,3 +36,8 @@ USER br-user
 WORKDIR /home/br-user
 ENV HOME /home/br-user
 ENV LC_ALL en_US.UTF-8
+
+# Add Qt 5.12.5
+RUN wget http://download.qt.io/archive/qt/5.12/5.12.5/single/qt-everywhere-src-5.12.5.tar.xz
+RUN cd $HOME && tar xJf qt-everywhere-src-5.12.5.tar.xz
+RUN cd $HOME/qt-everywhere-src-5.12.5 && ./configure -opensource -confirm-license
