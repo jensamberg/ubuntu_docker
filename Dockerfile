@@ -19,7 +19,7 @@ RUN \
   apt-get install -y curl git htop man unzip vim wget cmake && \
   apt-get install -y mercurial make binutils gcc g++ patch bc file rsync unzip cpio tar && \
   apt-get install -y gcc-multilib g++-multilib libncurses5-dev python3 && \
-  apt-get install -y libgl-dev sqlite python3-pip sqlite3 sshpass libasound2-dev mingw-w64 && \
+  apt-get install -y libgl-dev sqlite python3-pip sqlite3 sshpass libasound2-dev mingw-w64 libgl1-mesa-dev && \
   apt-get -y autoremove && \
   apt-get -y clean
 
