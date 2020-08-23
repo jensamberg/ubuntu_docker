@@ -31,6 +31,8 @@ RUN locale-gen en_US.UTF-8
 
 RUN useradd -ms /bin/bash br-user && \
     chown -R br-user:br-user /home/br-user
+                    
+ 
 
 USER br-user
 WORKDIR /home/br-user
@@ -42,11 +44,11 @@ RUN wget http://download.qt.io/archive/qt/5.12/5.12.5/single/qt-everywhere-src-5
 RUN tar xJf qt-everywhere-src-5.12.5.tar.xz
 RUN cd qt-everywhere-src-5.12.5 && ./configure -opensource -confirm-license -xplatform linux-g++ -no-compile-examples -prefix /opt/Qt5.12.5/5.12.5/gcc_64
 RUN cd qt-everywhere-src-5.12.5 && make
-RUN cd qt-everywhere-src-5.12.5 && make install
+RUN cd qt-everywhere-src-5.12.5 && sudo make install
 
 # Add Qt 5.12.5 an generate cross compiler for for windows
-RUN rm -rf qt-everywhere-src-5.12.5
-RUN tar xJf qt-everywhere-src-5.12.5.tar.xz
-RUN cd qt-everywhere-src-5.12.5 && ./configure -opensource -confirm-license -xplatform win32-g++ -device-option CROSS_COMPILE=/usr/bin/x86_64-w64-mingw32- -prefix /opt/Qt5.12.5/5.12.5/mingw_64 -debug-and-release -no-compile-examples -opengl desktop -skip qtactiveqt -skip qtcharts -skip qtdoc -skip qtlocation -skip qtremoteobjects -skip qtserialbus -skip qtwebchannel -skip qtwebview -skip qtandroidextras -skip qtconnectivity -skip qtgamepad -skip qtmacextras -skip qtpurchasing -skip qtwinextras -skip qtdatavis3d -skip qtmultimedia -skip qtscxml -skip qtspeech -skip qtvirtualkeyboard -skip qtwebglplugin -skip qtx11extras -skip qt3d -skip qtcanvas3d -skip qtnetworkauth -skip qtsensors -skip qtwayland -skip qtwebsockets
-RUN cd qt-everywhere-src-5.12.5 && make
-RUN cd qt-everywhere-src-5.12.5 && make install
+#RUN rm -rf qt-everywhere-src-5.12.5
+#RUN tar xJf qt-everywhere-src-5.12.5.tar.xz
+#RUN cd qt-everywhere-src-5.12.5 && ./configure -opensource -confirm-license -xplatform win32-g++ -device-option CROSS_COMPILE=/usr/bin/x86_64-w64-mingw32- -prefix /opt/Qt5.12.5/5.12.5/mingw_64 -debug-and-release -no-compile-examples -opengl desktop -skip qtactiveqt -skip qtcharts -skip qtdoc -skip qtlocation -skip qtremoteobjects -skip qtserialbus -skip qtwebchannel -skip qtwebview -skip qtandroidextras -skip qtconnectivity -skip qtgamepad -skip qtmacextras -skip qtpurchasing -skip qtwinextras -skip qtdatavis3d -skip qtmultimedia -skip qtscxml -skip qtspeech -skip qtvirtualkeyboard -skip qtwebglplugin -skip qtx11extras -skip qt3d -skip qtcanvas3d -skip qtnetworkauth -skip qtsensors -skip qtwayland -skip qtwebsockets
+#RUN cd qt-everywhere-src-5.12.5 && make
+#RUN cd qt-everywhere-src-5.12.5 && make install
